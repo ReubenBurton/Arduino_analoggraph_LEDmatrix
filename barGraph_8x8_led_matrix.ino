@@ -20,6 +20,7 @@
 // these constants won't change:
 const int analogPin = A0;   // the pin that the potentiometer is attached to
 const int ledCount = 9;    // the height of the bar graph inc 0
+const int buffer1 = 9;    //buffer for input signal
 
 int DIN = 2;   // DIN pin of MAX7219 module
 int CLK = 4;   // CLK pin of MAX7219 module
@@ -42,7 +43,7 @@ void loop() {
   // map the result to a range from 0 to the number of LEDs:
   byte ledLevel = map(sensorReading, 0, 1023, 0, ledCount);
   int(ledLevel2) = ledarray2[ledLevel]; //converts input signal from unsigned byte to dec
-m.setColumn(ledCount + 1, ledLevel2);
+m.setColumn(buffer1, ledLevel2);
 delay(shift_speed);
 m.shiftLeft(false, false);
     }
